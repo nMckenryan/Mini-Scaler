@@ -2,15 +2,9 @@
   <v-container width="200" class="mx-auto mt-5">
     <v-row class="text-center">
       <v-col class="mb-5 mx-auto" cols="8">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Mini Scaler
-        </h1>
-        <p class="subheading font-weight-regular">
-          Get your 3D Printed Minis just the right side!
-        </p>
-
         <v-form>
           <v-layout row wrap>
+            <!-- TODO: Instantiate Imperial Conversion -->
             <!-- <v-flex s2>
               <v-text-field
                 label="Character Height (Metres)"
@@ -24,11 +18,12 @@
               <v-text-field
                 label="Character Height (Centimetres)"
                 prepend-icon="mdi-tape-measure"
-                v-model="realMetric"
+                v-model.number="realMetric"
                 clearable
                 type="number"
                 suffix="cm"
-                v-on:change="scaleToMini"
+                @change="parallelConversion(m)"
+                v-on:update="scaleToMini"
               ></v-text-field>
             </v-flex>
             <v-spacer></v-spacer>
@@ -41,15 +36,17 @@
                 type="number"
               ></v-text-field>
             </v-flex>
+             -->
             <v-flex s2>
               <v-text-field
                 label="Character Height (Inches)"
                 prepend-icon="mdi-tape-measure"
-                v-model="realImperial"
+                v-model.number="realImp"
+                @change="parallelConversion(i)"
                 single-line
                 type="number"
               ></v-text-field>
-            </v-flex> -->
+            </v-flex>
           </v-layout>
 
           <v-spacer></v-spacer>
@@ -75,9 +72,9 @@
             v-model="scaleHeight"
             prepend-icon="mdi-scale-balance"
             clearable
-            hide-details
             type="number"
             suffix="mm"
+            readonly
           ></v-text-field>
         </v-form>
       </v-col>
@@ -92,6 +89,7 @@ export default {
   async mounted() {},
 
   data: () => ({
+    masterMeasure: 0,
     realImp: 0,
     realMetric: 0,
     scaleType: 28,
@@ -99,18 +97,38 @@ export default {
   }),
 
   methods: {
-    convertImp() {
-      // 1 ft = 0.3m
-      return this.realMetric * 0.3;
+    parallelConversion(f) {
+      if (f == "i") {
+        this.realMetric = this.convertMetric(this.realImp);
+      } else {
+        this.realImp = this.convertImp(this.realMetric);
+      }
+      this.scaleToMini();
     },
 
-    convertMetric() {
+    convertImp(v) {
+      // 1 ft = 0.3m
+      this.realMetric = v * 0.3;
+    },
+
+    convertMetric(v) {
       //1m = 3.28ft
-      return this.realImperial * 3.28;
+      this.realImperial = v * 3.28;
     },
 
     scaleToMini() {
-      this.scaleHeight = this.realMetric / 5.7; //scale for 32mm
+      let equation = 1;
+      switch (
+        this.scaleType //TODO: add mode scaletypes
+      ) {
+        case 28:
+          equation = 5.7;
+          break;
+        case 32:
+          equation = 6;
+          break;
+      }
+      this.scaleHeight = this.realMetric / equation; //scale for 32mm
     },
   },
 };
