@@ -5,48 +5,30 @@
         <v-form>
           <v-layout row wrap>
             <!-- TODO: Instantiate Imperial Conversion -->
-            <!-- <v-flex s2>
-              <v-text-field
-                label="Character Height (Metres)"
-                prepend-icon="mdi-tape-measure"
-                v-model="realMetric"
-                single-line
-                type="number"
-              ></v-text-field>
-            </v-flex> -->
+
             <v-flex s2>
               <v-text-field
                 label="Character Height (Centimetres)"
                 prepend-icon="mdi-tape-measure"
                 v-model.number="realMetric"
-                clearable
                 type="number"
                 suffix="cm"
-                @change="parallelConversion(m)"
-                v-on:update="scaleToMini"
+                @change="scaleToMini"
               ></v-text-field>
             </v-flex>
             <v-spacer></v-spacer>
+
             <!-- <v-flex s2>
-              <v-text-field
-                label="Character Height (Feet)"
-                prepend-icon="mdi-tape-measure"
-                v-model="realImperial"
-                single-line
-                type="number"
-              ></v-text-field>
-            </v-flex>
-             -->
-            <v-flex s2>
               <v-text-field
                 label="Character Height (Inches)"
                 prepend-icon="mdi-tape-measure"
                 v-model.number="realImp"
-                @change="parallelConversion(i)"
-                single-line
                 type="number"
+                suffix="cm"
+                @change="parallelConversion(i)"
+                v-on:update="scaleToMini"
               ></v-text-field>
-            </v-flex>
+            </v-flex> -->
           </v-layout>
 
           <v-spacer></v-spacer>
@@ -55,7 +37,7 @@
           <v-btn-toggle
             v-model="scaleType"
             tile
-            color="deep-purple accent-3"
+            color="deep-blue accent-3"
             group
           >
             <v-btn value="28">
@@ -71,7 +53,6 @@
             label="Printed Mini Size"
             v-model="scaleHeight"
             prepend-icon="mdi-scale-balance"
-            clearable
             type="number"
             suffix="mm"
             readonly
@@ -84,7 +65,7 @@
 
 <script>
 export default {
-  name: "Scale Calculator",
+  name: "ScaleCalculator",
 
   async mounted() {},
 
@@ -100,7 +81,7 @@ export default {
     parallelConversion(f) {
       if (f == "i") {
         this.realMetric = this.convertMetric(this.realImp);
-      } else {
+      } else if (f == "m") {
         this.realImp = this.convertImp(this.realMetric);
       }
       this.scaleToMini();
@@ -117,17 +98,17 @@ export default {
     },
 
     scaleToMini() {
+      //TODO: add mode scaletypes
       let equation = 1;
-      switch (
-        this.scaleType //TODO: add mode scaletypes
-      ) {
-        case 28:
+      switch (this.scaleType) {
+        case "28":
           equation = 5.7;
           break;
-        case 32:
+        case "32":
           equation = 6;
           break;
       }
+      console.log(this.scaleHeight + equation);
       this.scaleHeight = this.realMetric / equation; //scale for 32mm
     },
   },
