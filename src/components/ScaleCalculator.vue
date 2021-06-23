@@ -10,13 +10,22 @@
               <v-text-field
                 label="Character Height (Centimetres)"
                 prepend-icon="mdi-tape-measure"
-                v-model.number="realMetric"
+                v-model.number="realCm"
                 type="number"
                 suffix="cm"
-                @change="scaleToMini"
               ></v-text-field>
             </v-flex>
             <v-spacer></v-spacer>
+
+            <v-flex s2>
+              <v-text-field
+                label="Character Height (Metres)"
+                prepend-icon="mdi-tape-measure"
+                v-model.lazy="update"
+                type="number"
+                suffix="m"
+              ></v-text-field>
+            </v-flex>
 
             <!-- <v-flex s2>
               <v-text-field
@@ -51,7 +60,7 @@
 
           <v-text-field
             label="Printed Mini Size"
-            v-model="scaleHeight"
+            v-model.lazy="scaleToMini"
             prepend-icon="mdi-scale-balance"
             type="number"
             suffix="mm"
@@ -71,11 +80,36 @@ export default {
 
   data: () => ({
     masterMeasure: 0,
-    realImp: 0,
-    realMetric: 0,
+    realCm: 0,
+    realM: 0,
     scaleType: 28,
     scaleHeight: 0,
   }),
+
+  computed: {
+    update: function(orig) {
+      if (orig == "m") {
+        return this.realCm / 100;
+      } else {
+        return this.realCm;
+      }
+    },
+
+    scaleToMini: function() {
+      //TODO: add mode scaletypes
+      let equation = 1;
+      switch (this.scaleType) {
+        case 28:
+          equation = 5.7;
+          break;
+        case 32:
+          equation = 6;
+          break;
+      }
+      console.log(this.scaleHeight + equation);
+      return this.realCm / equation; //scale for 32mm
+    },
+  },
 
   methods: {
     parallelConversion(f) {
@@ -95,21 +129,6 @@ export default {
     convertMetric(v) {
       //1m = 3.28ft
       this.realImperial = v * 3.28;
-    },
-
-    scaleToMini() {
-      //TODO: add mode scaletypes
-      let equation = 1;
-      switch (this.scaleType) {
-        case "28":
-          equation = 5.7;
-          break;
-        case "32":
-          equation = 6;
-          break;
-      }
-      console.log(this.scaleHeight + equation);
-      this.scaleHeight = this.realMetric / equation; //scale for 32mm
     },
   },
 };
