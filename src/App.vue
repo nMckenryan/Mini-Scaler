@@ -1,19 +1,18 @@
 <template>
   <v-app>
-    <v-main>
-      <ScaleCalculator />
-    </v-main>
+    <v-main> <TopBar /></v-main>
   </v-app>
 </template>
 
 <script>
-import ScaleCalculator from "./components/ScaleCalculator";
+import TopBar from "./components/TopBar";
 
 export default {
   name: "App",
 
   components: {
-    ScaleCalculator,
+    TopBar,
+    // Topbar -> ScaleCalc
   },
 
   data: () => ({}),
