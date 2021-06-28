@@ -15,7 +15,6 @@
                 v-model.lazy="realCm"
                 type="number"
                 suffix="cm"
-                @change="mConvert()"
               ></v-text-field>
             </v-flex>
             <v-spacer></v-spacer>
@@ -31,18 +30,6 @@
                 suffix="m"
               ></v-text-field>
             </v-flex>
-
-            <!-- <v-flex s2>
-              <v-text-field
-                label="Character Height (Inches)"
-                prepend-icon="mdi-tape-measure"
-                v-model.number="realImp"
-                type="number"
-                suffix="cm"
-                @change="parallelConversion(i)"
-                v-on:update="scaleToMini"
-              ></v-text-field>
-            </v-flex> -->
           </v-layout>
 
           <v-spacer></v-spacer>
@@ -98,9 +85,17 @@ export default {
       this.realCm = this.hPreset;
     },
 
+    realCm: function() {
+      this.realM = this.realCm / 100;
+    },
+
     masterMeasure: function() {
       this.realCm = this.masterMeasure;
       this.realM = this.masterMeasure / 100;
+    },
+
+    realM: function() {
+      this.realCm = this.realM * 100;
     },
   },
 
@@ -115,6 +110,9 @@ export default {
         case 32:
           equation = 6;
           break;
+        case 54:
+          equation = 12;
+          break;
       }
       console.log(this.scaleHeight + equation);
       return this.realCm / equation; //scale for 32mm
@@ -122,10 +120,6 @@ export default {
   },
 
   methods: {
-    mConvert: function() {
-      this.realM = this.realCm / 100;
-    },
-
     parallelConversion(f) {
       if (f == "i") {
         this.realMetric = this.convertMetric(this.realImp);
