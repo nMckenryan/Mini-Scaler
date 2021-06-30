@@ -2,12 +2,12 @@
   <v-container width="200" class="mx-auto mt-5">
     <v-row class="text-center">
       <v-col class="mb-5 mx-auto" cols="8">
+        <!-- TOGGLE IMPERIAL/METRIC -->
+        <v-switch v-model="isImp" inset :label="label"></v-switch>
+
         <v-form>
-          <v-layout row wrap>
-            <!-- TODO: Instantiate Imperial Conversion -->
-
+          <v-layout row wrap v-if="isImp == false">
             <!-- CENTIMETRES -->
-
             <v-flex s2>
               <v-text-field
                 label="Character Height (Centimetres)"
@@ -20,7 +20,6 @@
             <v-spacer></v-spacer>
 
             <!-- METRES -->
-
             <v-flex s2>
               <v-text-field
                 label="Character Height (Metres)"
@@ -28,6 +27,32 @@
                 v-model.lazy="realM"
                 type="number"
                 suffix="m"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+
+          <v-layout row wrap v-else>
+            <!-- INCHES  -->
+            <v-flex s2>
+              <v-text-field
+                label="Character Height (Inches)"
+                prepend-icon="mdi-tape-measure"
+                v-model.lazy="realI"
+                type="number"
+                suffix="inch"
+              ></v-text-field>
+            </v-flex>
+
+            <v-spacer></v-spacer>
+
+            <!-- FEET -->
+            <v-flex s2>
+              <v-text-field
+                label="Character Height (Feet)"
+                prepend-icon="mdi-tape-measure"
+                v-model.lazy="realF"
+                type="number"
+                suffix="ft"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -75,6 +100,9 @@ export default {
     masterMeasure: 0,
     realCm: 0,
     realM: 0,
+    realI: 0,
+    realF: 0,
+    isImp: false,
     scaleType: 28,
     scaleHeight: 0,
   }),
@@ -87,15 +115,19 @@ export default {
 
     realCm: function() {
       this.realM = this.realCm / 100;
-    },
-
-    masterMeasure: function() {
-      this.realCm = this.masterMeasure;
-      this.realM = this.masterMeasure / 100;
+      // this.realI = this.convertImp(this.realCm);
     },
 
     realM: function() {
       this.realCm = this.realM * 100;
+    },
+
+    realI: function() {
+      this.convertInch(this.realI);
+    },
+
+    realF: function() {
+      this.convertFt(this.realF);
     },
   },
 
@@ -117,6 +149,11 @@ export default {
       console.log(this.scaleHeight + equation);
       return this.realCm / equation; //scale for 32mm
     },
+
+    label: function() {
+      const l = this.isImp == true ? "Imperial" : "Metric";
+      return l;
+    },
   },
 
   methods: {
@@ -128,14 +165,20 @@ export default {
       }
       this.scaleToMini();
     },
+
     convertImp(v) {
-      // 1 ft = 0.3m
-      this.realMetric = v * 0.3;
+      // 1 inch  = 2.54cm
+      this.realCm = v / 0.3937;
     },
 
     convertMetric(v) {
       //1m = 3.28ft
-      this.realImperial = v * 3.28;
+      this.realI = v * 3.28;
+    },
+
+    convertInch(v) {
+      // 1 inch  = 2.54cm
+      this.realCm = v / 0.3937;
     },
   },
 };
