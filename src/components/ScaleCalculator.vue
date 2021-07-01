@@ -163,16 +163,5 @@ export default {
     //   return l;
     // },
   },
-
-  methods: {
-    // convertInch(v) {
-    //   // 1 inch  = 2.54cm
-    //   this.realCm = v / 0.3937;
-    // },
-    // convertMetric(v) {
-    //   //1m = 3.28ft
-    //   this.realI = v * 3.28;
-    // },
-  },
 };
 </script>
