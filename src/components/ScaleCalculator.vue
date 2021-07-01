@@ -19,11 +19,11 @@
             <!-- METRES -->
             <v-flex s2>
               <v-text-field
-                label="Character Height (Metres)"
+                label="Character Height (Inches)"
                 prepend-icon="mdi-tape-measure"
-                v-model.lazy="realM"
+                v-model.lazy="realI"
                 type="number"
-                suffix="m"
+                suffix="in"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -68,7 +68,7 @@ export default {
   data: () => ({
     masterMeasure: 0,
     realCm: 0,
-    realM: 0,
+    realI: 0,
     scaleType: 28,
     scaleHeight: 0,
   }),
@@ -80,17 +80,17 @@ export default {
     },
 
     realCm: function() {
-      this.realM = this.realCm / 100;
+      this.convertToInch();
     },
 
-    realM: function() {
-      this.realCm = this.realM * 100;
+    realI: function() {
+      this.convertToCm();
     },
   },
 
   computed: {
     scaleToMini: function() {
-      //TODO: add mode scaletypes
+      //TODO: Implement scaletypes Properly
       let equation = 1;
       switch (this.scaleType) {
         case 28:
@@ -103,8 +103,18 @@ export default {
           equation = 12;
           break;
       }
-      console.log(this.scaleHeight + equation);
-      return this.realCm / equation; //scale for 32mm
+
+      return (this.realCm / equation).toFixed(2);
+    },
+  },
+
+  methods: {
+    convertToInch() {
+      this.realI = this.realCm / 2.54;
+    },
+
+    convertToCm() {
+      this.realCm = this.realInch * 2.54;
     },
   },
 };
