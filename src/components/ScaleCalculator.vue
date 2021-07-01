@@ -106,6 +106,9 @@ export default {
     realI: 0,
     realF: 0,
     isImp: false,
+<<<<<<< HEAD
+>>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
+=======
 >>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
     scaleType: 28,
     scaleHeight: 0,
@@ -123,6 +126,9 @@ export default {
 =======
       this.realM = this.realCm / 100;
       // this.realI = this.convertImp(this.realCm);
+<<<<<<< HEAD
+>>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
+=======
 >>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
     },
 
@@ -164,10 +170,13 @@ export default {
       this.realI = this.realCm / 2.54;
     },
 
+<<<<<<< HEAD
     convertToCm() {
       this.realCm = this.realInch * 2.54;
     },
 
+=======
+>>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
     label: function() {
       const l = this.isImp == true ? "Imperial" : "Metric";
       return l;
