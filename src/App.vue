@@ -12,7 +12,7 @@ export default {
 
   components: {
     TopBar,
-    // Topbar contains ScaleCalc
+    // Topbar -> ScaleCalc
   },
 
   data: () => ({}),

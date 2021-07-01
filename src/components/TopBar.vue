@@ -34,6 +34,7 @@
         </v-list>
       </v-menu>
 
+      <!-- TODO: Change CharHeight on click -->
       <v-menu transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn class="purple" color="primary" dark v-bind="attrs" v-on="on">
