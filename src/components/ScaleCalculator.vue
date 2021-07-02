@@ -2,57 +2,57 @@
   <v-container width="200" class="mx-auto mt-5">
     <v-row class="text-center">
       <v-col class="mb-5 mx-auto" cols="8">
-        <!-- TOGGLE IMPERIAL/METRIC -->
-        <v-switch v-model="isImp" inset :label="label"></v-switch>
-
         <v-form>
-          <v-layout row wrap v-if="isImp == false">
+          <v-layout row wrap>
             <!-- CENTIMETRES -->
             <v-flex s2>
               <v-text-field
                 label="Character Height (Centimetres)"
                 prepend-icon="mdi-tape-measure"
-                v-model.lazy="realCm"
+                :value="realCm"
                 type="number"
                 suffix="cm"
+                @input="updateCm"
               ></v-text-field>
             </v-flex>
+
             <v-spacer></v-spacer>
 
-            <!-- METRES -->
+            <!-- Inches -->
             <v-flex s2>
               <v-text-field
                 label="Character Height (Inches)"
                 prepend-icon="mdi-tape-measure"
-                v-model.lazy="realI"
+                :value="realI"
                 type="number"
                 suffix="in"
+                @input="updateIn"
               ></v-text-field>
             </v-flex>
           </v-layout>
 
-          <v-layout row wrap v-else>
-            <!-- INCHES  -->
+          <v-layout>
+            <!-- METRES -->
             <v-flex s2>
               <v-text-field
-                label="Character Height (Inches)"
+                label="Character Height (Metres)"
                 prepend-icon="mdi-tape-measure"
-                v-model.lazy="realI"
+                :value="realM"
                 type="number"
-                suffix="inch"
+                suffix="m"
+                @input="updateM"
               ></v-text-field>
             </v-flex>
-
             <v-spacer></v-spacer>
-
-            <!-- FEET -->
+            <!-- Feet -->
             <v-flex s2>
               <v-text-field
-                label="Character Height (Feet)"
+                label="Character Height (Ft)"
                 prepend-icon="mdi-tape-measure"
-                v-model.lazy="realF"
+                :value="realFt"
                 type="number"
                 suffix="ft"
+                @input="updateFt"
               ></v-text-field>
             </v-flex>
           </v-layout>
@@ -94,23 +94,12 @@ export default {
   props: ["hPreset"],
   name: "ScaleCalculator",
 
-  async mounted() {},
-
   data: () => ({
-    masterMeasure: 0,
     realCm: 0,
-<<<<<<< HEAD
     realI: 0,
-=======
+    realFt: 0,
     realM: 0,
-    realI: 0,
-    realF: 0,
-    isImp: false,
-<<<<<<< HEAD
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
-=======
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
-    scaleType: 28,
+    scaleType: "28",
     scaleHeight: 0,
   }),
 
@@ -119,30 +108,6 @@ export default {
       //Handles Top menu preset changes.
       this.realCm = this.hPreset;
     },
-
-    realCm: function() {
-<<<<<<< HEAD
-      this.convertToInch();
-=======
-      this.realM = this.realCm / 100;
-      // this.realI = this.convertImp(this.realCm);
-<<<<<<< HEAD
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
-=======
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
-    },
-
-    realI: function() {
-      this.convertToCm();
-    },
-
-    realI: function() {
-      this.convertInch(this.realI);
-    },
-
-    realF: function() {
-      this.convertFt(this.realF);
-    },
   },
 
   computed: {
@@ -150,66 +115,48 @@ export default {
       //TODO: Implement scaletypes Properly
       let equation = 1;
       switch (this.scaleType) {
-        case 28:
+        case "28":
           equation = 5.7;
           break;
-        case 32:
+        case "32":
           equation = 6;
           break;
-        case 54:
+        case "54":
           equation = 12;
           break;
       }
-
       return (this.realCm / equation).toFixed(2);
     },
   },
 
   methods: {
-    convertToInch() {
-      this.realI = this.realCm / 2.54;
+    updateCm(value) {
+      this.realI = value * 0.393701;
+      this.realFt = value * 0.03280841666667;
+      this.realCm = value;
+      this.realM = value * 0.01;
     },
 
-<<<<<<< HEAD
-    convertToCm() {
-      this.realCm = this.realInch * 2.54;
+    updateIn(value) {
+      this.realI = value;
+      this.realFt = value * 2.54;
+      this.realCm = value * 0.393701;
+      this.realM = value * 0.0254;
     },
 
-=======
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
-    label: function() {
-      const l = this.isImp == true ? "Imperial" : "Metric";
-      return l;
+    updateM(value) {
+      this.realI = value * 0.393701;
+      this.realFt = value * 0.03280841666667;
+      this.realCm = value * 100;
+      this.realM = value;
+    },
+
+    updateFt(value) {
+      this.realI = value * 0.393701;
+      this.realFt = value;
+      this.realCm = value * 100;
+      this.realM = value * 0.3048;
     },
   },
-<<<<<<< HEAD
-=======
-
-  methods: {
-    parallelConversion(f) {
-      if (f == "i") {
-        this.realMetric = this.convertMetric(this.realImp);
-      } else if (f == "m") {
-        this.realImp = this.convertImp(this.realMetric);
-      }
-      this.scaleToMini();
-    },
-
-    convertImp(v) {
-      // 1 inch  = 2.54cm
-      this.realCm = v / 0.3937;
-    },
-
-    convertMetric(v) {
-      //1m = 3.28ft
-      this.realI = v * 3.28;
-    },
-
-    convertInch(v) {
-      // 1 inch  = 2.54cm
-      this.realCm = v / 0.3937;
-    },
-  },
->>>>>>> parent of 32a017c (REversed last change. need to focus on the MVP, which is the metric version)
 };
 </script>
