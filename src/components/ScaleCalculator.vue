@@ -73,6 +73,10 @@
             <v-btn value="32">
               32mm
             </v-btn>
+
+            <v-btn value="32">
+              54mm
+            </v-btn>
           </v-btn-toggle>
 
           <v-text-field
@@ -106,13 +110,12 @@ export default {
   watch: {
     hPreset: function() {
       //Handles Top menu preset changes.
-      this.realCm = this.hPreset;
+      this.updateCm(this.hPreset);
     },
   },
 
   computed: {
     scaleToMini: function() {
-      //TODO: Implement scaletypes Properly
       let equation = 1;
       switch (this.scaleType) {
         case "28":
@@ -130,9 +133,11 @@ export default {
   },
 
   methods: {
+    //TODO: Optimise this code with reusable methods.
+    // TODO: Test and verify conversions are correct (JEST)
     updateCm(value) {
       this.realI = value * 0.393701;
-      this.realFt = value * 0.03280841666667;
+      this.realFt = this.roundFeet(value); //value * 0.03280841666667;
       this.realCm = value;
       this.realM = value * 0.01;
     },
@@ -156,6 +161,13 @@ export default {
       this.realFt = value;
       this.realCm = value * 100;
       this.realM = value * 0.3048;
+    },
+
+    roundFeet(value) {
+      var realFeet = (value * 0.3937) / 12;
+      var feet = Math.floor(value);
+      var inches = Math.round((realFeet - feet) * 12);
+      return feet + "&prime;" + inches + "&Prime;";
     },
   },
 };
