@@ -133,41 +133,34 @@ export default {
   },
 
   methods: {
-    //TODO: Optimise this code with reusable methods.
+    //TODO: Sort out ft/inch display
     // TODO: Test and verify conversions are correct (JEST)
     updateCm(value) {
-      this.realI = value * 0.393701;
-      this.realFt = this.roundFeet(value); //value * 0.03280841666667;
+      this.realI = value * 0.39;
+      this.realFt = value * 0.032;
       this.realCm = value;
       this.realM = value * 0.01;
     },
 
     updateIn(value) {
       this.realI = value;
-      this.realFt = value * 2.54;
-      this.realCm = value * 0.393701;
-      this.realM = value * 0.0254;
+      this.realFt = value * 12;
+      this.realCm = value * 2.54;
+      this.realM = value * 39.37;
     },
 
     updateM(value) {
-      this.realI = value * 0.393701;
-      this.realFt = value * 0.03280841666667;
+      this.realI = value * 39.37;
+      this.realFt = value * 3.28;
       this.realCm = value * 100;
       this.realM = value;
     },
 
     updateFt(value) {
-      this.realI = value * 0.393701;
+      this.realI = value / 12;
       this.realFt = value;
-      this.realCm = value * 100;
-      this.realM = value * 0.3048;
-    },
-
-    roundFeet(value) {
-      var realFeet = (value * 0.3937) / 12;
-      var feet = Math.floor(value);
-      var inches = Math.round((realFeet - feet) * 12);
-      return feet + "&prime;" + inches + "&Prime;";
+      this.realCm = value * 30.48;
+      this.realM = value * 0.3;
     },
   },
 };
