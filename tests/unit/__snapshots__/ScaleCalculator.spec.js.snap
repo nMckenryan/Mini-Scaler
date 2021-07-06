@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mount TopBar 1`] = `
+<div>
+  <v-app-bar app="" color="light-blue darken-4" dark="">
+    <div class="d-flex align-center">
+      <v-img alt="MiniscalerLogo" contain="" src="..\\assets\\scalerLogoWhite.png" transition="scale-transition" width="45" class="shrink mr-2"></v-img>
+      <h1 class="display-1 font-weight-bold my-auto">
+        Mini Scaler
+      </h1>
+    </div>
+    <v-spacer></v-spacer>
+    <v-menu transition="slide-y-transition" bottom="">
+      <v-list>
+        <v-list-item>
+          <v-list-item-name><a>
+              Imperial Guardsman 182 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Space Marine (Armoured) 228 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Ork 198 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Ork Warboss 300 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Genestealer 189 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Eldar/Drukhari 189 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Necron 243 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Tau 167 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Tyranid Warrior 274 cm</a></v-list-item-name>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    <v-menu transition="slide-y-transition" bottom="">
+      <v-list>
+        <v-list-item>
+          <v-list-item-name><a>
+              Human 170 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Half Elf 167 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Elf 165 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Dwarf 125 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Halfling 91 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Gnome 101 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Half-Orc 175 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Dragonborn 190 cm</a></v-list-item-name>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-name><a>
+              Goliath 228 cm</a></v-list-item-name>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+  </v-app-bar>
+  <v-container width="200" class="mx-auto mt-5">
+    <v-row class="text-center">
+      <v-col cols="8" class="mb-5 mx-auto">
+        <v-form>
+          <v-layout row="" wrap="">
+            <v-flex s2="">
+              <v-text-field label="Character Height (Centimetres)" prepend-icon="mdi-tape-measure" value="0" type="number" suffix="cm"></v-text-field>
+            </v-flex>
+            <v-spacer></v-spacer>
+            <v-flex s2="">
+              <v-text-field label="Character Height (Inches)" prepend-icon="mdi-tape-measure" value="0" type="number" suffix="in"></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-layout>
+            <v-flex s2="">
+              <v-text-field label="Character Height (Metres)" prepend-icon="mdi-tape-measure" value="0" type="number" suffix="m"></v-text-field>
+            </v-flex>
+            <v-spacer></v-spacer>
+            <v-flex s2="">
+              <v-text-field label="Character Height (Ft)" prepend-icon="mdi-tape-measure" value="0" type="number" suffix="ft"></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-spacer></v-spacer>
+          <v-btn-toggle tile="" color="deep-blue accent-3" group="" required="">
+            <v-btn value="28">
+              28mm
+            </v-btn>
+            <v-btn value="32">
+              32mm
+            </v-btn>
+            <v-btn value="32">
+              54mm
+            </v-btn>
+          </v-btn-toggle>
+          <v-text-field label="Printed Mini Size" prepend-icon="mdi-scale-balance" type="number" suffix="mm" readonly=""></v-text-field>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
+</div>
+`;

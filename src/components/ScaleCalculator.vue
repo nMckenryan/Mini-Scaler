@@ -60,11 +60,13 @@
           <v-spacer></v-spacer>
 
           <!-- Scale Selection -->
+          <!-- TODO: Fix buttons so only one selected (and cant deselect) -->
           <v-btn-toggle
             v-model="scaleType"
             tile
             color="deep-blue accent-3"
             group
+            required
           >
             <v-btn value="28">
               28mm

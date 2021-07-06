@@ -24,6 +24,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^27.0.6",
+    "jsdom-global": "^3.0.2",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.4.1",
@@ -66,6 +67,13 @@
       "json",
       "vue"
     ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "globals": {
+      "window": {}
+    },
     "transform": {
       ".*\\.(vue)$": "vue-jest"
     },
