@@ -1,7 +1,7 @@
 <template>
   <v-container width="200" class="mx-auto mt-5">
     <v-row class="text-center">
-      <v-col class="mb-5 mx-auto" cols="8">
+      <v-col class="mb-5 mx-auto" cols="4">
         <v-form>
           <v-layout row wrap>
             <!-- CENTIMETRES -->
@@ -14,12 +14,8 @@
                 suffix="cm"
                 @input="updateCm"
               ></v-text-field>
-            </v-flex>
 
-            <v-spacer></v-spacer>
-
-            <!-- Inches -->
-            <v-flex s2>
+              <!-- Inches -->
               <v-text-field
                 label="Character Height (Inches)"
                 prepend-icon="mdi-tape-measure"
@@ -29,9 +25,9 @@
                 @input="updateIn"
               ></v-text-field>
             </v-flex>
-          </v-layout>
 
-          <v-layout>
+            <v-spacer></v-spacer>
+
             <!-- METRES -->
             <v-flex s2>
               <v-text-field
@@ -42,10 +38,10 @@
                 suffix="m"
                 @input="updateM"
               ></v-text-field>
-            </v-flex>
-            <v-spacer></v-spacer>
-            <!-- Feet -->
-            <v-flex s2>
+
+              <v-spacer></v-spacer>
+
+              <!-- Feet -->
               <v-text-field
                 label="Character Height (Ft)"
                 prepend-icon="mdi-tape-measure"
@@ -64,9 +60,9 @@
           <v-btn-toggle
             v-model="scaleType"
             tile
-            color="deep-blue accent-3"
+            color="green accent-4"
             group
-            required
+            mandatory
           >
             <v-btn value="28">
               28mm
@@ -76,7 +72,7 @@
               32mm
             </v-btn>
 
-            <v-btn value="32">
+            <v-btn value="54">
               54mm
             </v-btn>
           </v-btn-toggle>
@@ -87,7 +83,6 @@
             prepend-icon="mdi-scale-balance"
             type="number"
             suffix="mm"
-            readonly
           ></v-text-field>
         </v-form>
       </v-col>

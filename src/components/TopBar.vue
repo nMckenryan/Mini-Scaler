@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app-bar app color="light-blue darken-4" dark>
+    <v-app-bar app color="light-green darken-4" dark>
       <div class="d-flex align-center">
         <v-img
           alt="MiniscalerLogo"
@@ -11,22 +11,28 @@
           width="45"
         />
 
-        <h1 class="display-1 font-weight-bold my-auto">
+        <h3 class="display-1 heading-3 font-weight-bold my-auto">
           Mini Scaler
-        </h1>
+        </h3>
       </div>
       <v-spacer></v-spacer>
 
-      <v-menu transition="slide-y-transition" bottom>
+      <v-menu offset-y transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="purple" color="primary" dark v-bind="attrs" v-on="on">
+          <v-btn
+            color="yellow darken-3"
+            dark
+            v-bind="attrs"
+            v-on="on"
+            class="ml-10"
+          >
             40k Reference
           </v-btn>
         </template>
         <v-list>
           <v-list-item v-for="(item, i) in Wh40Heights" :key="i">
             <v-list-item-name>
-              <a @click="setPreset(item.height)">
+              <a class="caption" @click="setPreset(item.height)">
                 {{ item.name }} {{ item.height }} cm</a
               ></v-list-item-name
             >
@@ -34,9 +40,9 @@
         </v-list>
       </v-menu>
 
-      <v-menu transition="slide-y-transition" bottom>
+      <v-menu transition="slide-y-transition" offset-y bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="purple" color="primary" dark v-bind="attrs" v-on="on">
+          <v-btn color="yellow darken-3" dark v-bind="attrs" v-on="on">
             DnD Reference
           </v-btn>
         </template>
