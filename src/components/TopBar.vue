@@ -22,10 +22,12 @@
           active-class="deep-purple--text text--accent-4"
         >
           <!-- TODO: Establish nonclickable Dividers -->
+
           <v-list-item>
             40k References
           </v-list-item>
 
+          <!-- TODO Fix slow responsive menu select -->
           <v-list-item v-for="(item, i) in Wh40Heights" :key="i">
             <v-list-item-name>
               <a @click="setPreset(item.height)">

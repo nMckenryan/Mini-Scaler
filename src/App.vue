@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// TODO: Update Favicon, site name and Description
 import TopBar from "./components/TopBar";
 
 export default {
