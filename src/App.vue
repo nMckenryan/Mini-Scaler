@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main> <TopBar /></v-main>
+    <v-main class="light-green lighten-5"> <TopBar /></v-main>
   </v-app>
 </template>
 

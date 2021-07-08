@@ -1,7 +1,7 @@
 <template>
   <v-container width="200" class="mx-auto mt-5">
     <v-row class="text-center">
-      <v-col class="mb-5 mx-auto" cols="4">
+      <v-col class="mb-5 mx-auto" cols="6">
         <v-form>
           <v-layout row wrap>
             <!-- CENTIMETRES -->

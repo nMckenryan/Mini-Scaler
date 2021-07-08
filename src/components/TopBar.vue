@@ -1,52 +1,42 @@
 <template>
-  <div>
+  <div class="mx-auto overflow-hidden" height="400">
     <v-app-bar app color="light-green darken-4" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="MiniscalerLogo"
-          class="shrink mr-2"
-          contain
-          src="..\assets\scalerLogoWhite.png"
-          transition="scale-transition"
-          width="45"
-        />
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <!-- TITLE -->
+      <v-img
+        alt="MiniscalerLogo"
+        class="shrink mr-2"
+        contain
+        src="..\assets\scalerLogoWhite.png"
+        transition="scale-transition"
+        width="45"
+      />
 
-        <h3 class="display-1 heading-3 font-weight-bold my-auto">
-          Mini Scaler
-        </h3>
-      </div>
-      <v-spacer></v-spacer>
+      <v-toolbar-title>Mini Scaler</v-toolbar-title>
+    </v-app-bar>
 
-      <v-menu offset-y transition="slide-y-transition" bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            color="yellow darken-3"
-            dark
-            v-bind="attrs"
-            v-on="on"
-            class="ml-10"
-          >
-            40k Reference
-          </v-btn>
-        </template>
-        <v-list>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list nav dense>
+        <v-list-item-group
+          v-model="group"
+          active-class="deep-purple--text text--accent-4"
+        >
+          <!-- TODO: Establish nonclickable Dividers -->
+          <v-list-item>
+            40k References
+          </v-list-item>
+
           <v-list-item v-for="(item, i) in Wh40Heights" :key="i">
             <v-list-item-name>
-              <a class="caption" @click="setPreset(item.height)">
+              <a @click="setPreset(item.height)">
                 {{ item.name }} {{ item.height }} cm</a
               ></v-list-item-name
             >
           </v-list-item>
-        </v-list>
-      </v-menu>
 
-      <v-menu transition="slide-y-transition" offset-y bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn color="yellow darken-3" dark v-bind="attrs" v-on="on">
-            DnD Reference
-          </v-btn>
-        </template>
-        <v-list>
+          <v-list-item>
+            DnD References
+          </v-list-item>
           <v-list-item v-for="(item, i) in dndHeights" :key="i">
             <v-list-item-name>
               <a @click="setPreset(item.height)">
@@ -54,9 +44,9 @@
               >
             </v-list-item-name>
           </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
 
     <Scale-Calculator v-bind:hPreset="menuSelect" />
   </div>
@@ -72,6 +62,7 @@ export default {
 
   data: () => ({
     menuSelect: "",
+    drawer: false,
     dndHeights: [
       { name: "Human", height: 170 },
       { name: "Half Elf", height: 167 },
