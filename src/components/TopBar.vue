@@ -94,6 +94,7 @@ export default {
   },
 
   data: () => ({
+    menuSelect: "",
     drawer: false,
     items: [
       {
