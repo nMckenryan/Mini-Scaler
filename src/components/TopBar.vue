@@ -7,7 +7,7 @@
         alt="MiniscalerLogo"
         class="shrink mr-2"
         contain
-        src="..\assets\scalerLogoWhite.png"
+        :src="require('../assets/scalerLogoWhite.png')"
         transition="scale-transition"
         width="45"
       />
