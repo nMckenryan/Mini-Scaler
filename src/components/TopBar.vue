@@ -44,40 +44,6 @@
           </v-list-item>
         </v-list-group>
       </v-list>
-
-      <!-- 
-      <v-list nav dense color="light-green lighten-4">
-        <v-list-group
-          v-for="item in items"
-          :key="item.title"
-          v-model="item.active"
-          :prepend-icon="item.action"
-          no-action
-        >
-          <v-list-item disabled bolder backgroundcolor="red">
-            40k References
-          </v-list-item>
-
-          <v-list-item v-for="(item, i) in Wh40Heights" :key="i">
-            <v-list-item-name>
-              <a @click="setPreset(item.height)">
-                {{ item.name }} {{ item.height }} cm</a
-              ></v-list-item-name
-            >
-          </v-list-item>
-
-          <v-list-item>
-            DnD References
-          </v-list-item>
-          <v-list-item v-for="(item, i) in dndHeights" :key="i">
-            <v-list-item-name>
-              <a @click="setPreset(item.height)">
-                {{ item.name }} {{ item.height }} cm</a
-              >
-            </v-list-item-name>
-          </v-list-item>
-        </v-list-group>
-      </v-list> -->
     </v-navigation-drawer>
 
     <Scale-Calculator v-bind:hPreset="menuSelect" />
