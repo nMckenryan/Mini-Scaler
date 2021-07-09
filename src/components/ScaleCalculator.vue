@@ -56,7 +56,6 @@
           <v-spacer></v-spacer>
 
           <!-- Scale Selection -->
-          <!-- TODO: Fix buttons so only one selected (and cant deselect) -->
           <v-btn-toggle
             v-model="scaleType"
             tile
