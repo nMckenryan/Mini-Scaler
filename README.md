@@ -20,11 +20,17 @@ Contains handy height reference menu for DnD and Warhammer 40k.
 
 ## Screenshots
 
+#### Desktop
+
 ![DeskScreen](screenshots/desktopScreen.JPG)
 
-![MobileScreen](screenshots/mobileScreen.JPG)
+#### Mobile
 
-![tabletscreen](screenshots/tabletScreen.JPG)
+![MobileScreen](screenshots/mobileScreen.jpg)
+
+#### Tablet
+
+![tabletscreen](screenshots/tabletScreen.jpg)
 
 ## Default Setup Stuff
 
