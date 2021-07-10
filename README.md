@@ -3,7 +3,7 @@
 
 Contains handy height reference menu for DnD and Warhammer 40k.
 
-![DesktopScreen]](lighthouseTests/8July Lighthouse Test.jpg)
+![DesktopScreen](lighthouseTests/8July Lighthouse Test.jpg)
 
 [MobileScreen]](screenshots/MobileScreen.JPG)
 
