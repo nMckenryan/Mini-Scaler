@@ -63,6 +63,10 @@
             group
             mandatory
           >
+            <v-btn value="15">
+              15mm
+            </v-btn>
+
             <v-btn value="28">
               28mm
             </v-btn>
@@ -114,14 +118,17 @@ export default {
     scaleToMini: function() {
       let equation = 1;
       switch (this.scaleType) {
+        case "15":
+          equation = 100;
+          break;
         case "28":
-          equation = 5.7;
+          equation = 64;
           break;
         case "32":
-          equation = 6;
+          equation = 57.2;
           break;
         case "54":
-          equation = 12;
+          equation = 33.9;
           break;
       }
       return (this.realCm / equation).toFixed(2);
