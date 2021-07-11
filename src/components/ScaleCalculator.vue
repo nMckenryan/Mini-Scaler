@@ -136,8 +136,7 @@ export default {
   },
 
   methods: {
-    //TODO: Sort out ft/inch display
-    // TODO: Test and verify conversions are correct (JEST)
+    // TODO: Test and verify conversions are correct
     updateCm(value) {
       this.realI = value * 0.39;
       this.realFt = value * 0.032;
@@ -145,11 +144,12 @@ export default {
       this.realM = value * 0.01;
     },
 
+    //TODO: Sort out ft/inch display
     updateIn(value) {
       this.realI = value;
       this.realFt = value * 12;
       this.realCm = value * 2.54;
-      this.realM = value * 39.37;
+      this.realM = value * 0.0254;
     },
 
     updateM(value) {
@@ -160,7 +160,7 @@ export default {
     },
 
     updateFt(value) {
-      this.realI = value / 12;
+      this.realI = value * 12;
       this.realFt = value;
       this.realCm = value * 30.48;
       this.realM = value * 0.3;
