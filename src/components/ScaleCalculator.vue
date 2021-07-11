@@ -119,16 +119,16 @@ export default {
       let equation = 1;
       switch (this.scaleType) {
         case "15":
-          equation = 100;
+          equation = 12.2;
           break;
         case "28":
-          equation = 64;
+          equation = 6.5;
           break;
         case "32":
-          equation = 57.2;
+          equation = 5.7;
           break;
         case "54":
-          equation = 33.9;
+          equation = 3.39;
           break;
       }
       return (this.realCm / equation).toFixed(2);
